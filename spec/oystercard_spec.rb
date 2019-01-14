@@ -34,4 +34,12 @@ describe OysterCard do
     card.touch_in
     expect(card.in_journey?).to eq true
   end
+  
+  it 'is no longer in journey after touching out' do
+    card = OysterCard.new
+    card.touch_in
+    card.touch_out
+    expect(card.in_journey?).to eq false
+  end
 end
+
