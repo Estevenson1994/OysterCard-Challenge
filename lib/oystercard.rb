@@ -13,9 +13,6 @@ class OysterCard
     @balance += money
   end
 
-  def deduct(fare)
-    @balance -= fare
-  end
 
   def touch_in
     fail "Balance is low, please top up" if @balance < MINIMUM_BALANCE
@@ -35,5 +32,9 @@ class OysterCard
 
   def above_maximum?(money)
     @balance + money > 90
+  end
+
+  def deduct(fare)
+    @balance -= fare
   end
 end
