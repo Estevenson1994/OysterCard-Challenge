@@ -1,6 +1,7 @@
 class OysterCard
 
   MINIMUM_BALANCE = 1
+  MAXIMUM_BALANCE = 90
   attr_reader :balance, :entry_station
 
   def initialize(balance = 0)
@@ -31,7 +32,7 @@ class OysterCard
   private
 
   def above_maximum?(money)
-    @balance + money > 90
+    @balance + money > MAXIMUM_BALANCE
   end
 
   def deduct(fare)
