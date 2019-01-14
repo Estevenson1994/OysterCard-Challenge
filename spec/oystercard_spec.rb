@@ -24,22 +24,22 @@ describe OysterCard do
     expect(card.balance).to eq 8
   end
 
-  it 'in initially not in_journey' do
-    card = OysterCard.new
-    expect(card.in_journey?).to eq false
-  end
-  
-  it 'is in journey after touching in' do
-    card = OysterCard.new
-    card.touch_in
-    expect(card.in_journey?).to eq true
-  end
-  
+  context 'Card is initially not in use' do
+    it { is_expected.to_not be_in_journey } 
+  end    
+
+  context 'is in journey after touching in' do
+    before { subject.touch_in }
+    it { is_expected.to be_in_journey } 
+  end    
+
   it 'is no longer in journey after touching out' do
     card = OysterCard.new
     card.touch_in
     card.touch_out
-    expect(card.in_journey?).to eq false
-  end
+    expect(card).to_not be_in_journey
+  end    
+
+  
 end
 
