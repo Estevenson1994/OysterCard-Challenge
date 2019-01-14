@@ -11,6 +11,11 @@ attr_reader :balance
     @balance += money
   end
 
+  def deduct(fare)
+    @balance -= fare
+  end
+
+  private
 
   def above_maximum?(money)
     @balance + money > 90
