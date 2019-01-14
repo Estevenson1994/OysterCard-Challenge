@@ -45,6 +45,11 @@ describe OysterCard do
     card = OysterCard.new
     expect { card.touch_in }.to raise_error "Balance is low, please top up"
   end
-      
+
+  it 'fair is deducted when touching out' do
+    card = OysterCard.new(10)
+    card.touch_in
+    expect { card.touch_out }.to change{card.balance}.by -2
+  end
 end
 

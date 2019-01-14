@@ -23,6 +23,7 @@ class OysterCard
   end
 
   def touch_out
+    deduct(2)
     @in_journey = false
   end
   
