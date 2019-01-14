@@ -41,7 +41,7 @@ describe OysterCard do
     expect(card).to_not be_in_journey
   end    
 
-  it 'cannot touch in if balance is below 1' do
+  it 'cannot touch in if balance is below mimumum value' do
     card = OysterCard.new
     expect { card.touch_in }.to raise_error "Balance is low, please top up"
   end
