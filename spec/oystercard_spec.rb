@@ -10,4 +10,10 @@ describe OysterCard do
     card.top_up(10)
     expect(card.balance).to eq 10
   end
+
+  it 'raises error if balance is above 90' do
+    card = OysterCard.new
+    card.top_up(90)
+    expect { card.top_up(1) }.to raise_error 'Balance cannot go above 90'
+  end
 end
