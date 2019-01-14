@@ -28,4 +28,10 @@ describe OysterCard do
     card = OysterCard.new
     expect(card.in_journey?).to eq false
   end
+  
+  it 'is in journey after touching in' do
+    card = OysterCard.new
+    card.touch_in
+    expect(card.in_journey?).to eq true
+  end
 end
