@@ -17,6 +17,7 @@ attr_reader :balance
   end
 
   def touch_in
+    fail "Balance is low, please top up" if @balance < 1
     @in_journey = true
   end
 

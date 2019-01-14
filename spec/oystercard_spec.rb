@@ -28,18 +28,23 @@ describe OysterCard do
     it { is_expected.to_not be_in_journey } 
   end    
 
-  context 'is in journey after touching in' do
-    before { subject.touch_in }
-    it { is_expected.to be_in_journey } 
+  it 'is in journey after touching in' do
+    card = OysterCard.new(10)
+    card.touch_in
+    expect(card).to be_in_journey 
   end    
 
   it 'is no longer in journey after touching out' do
-    card = OysterCard.new
+    card = OysterCard.new(10)
     card.touch_in
     card.touch_out
     expect(card).to_not be_in_journey
   end    
 
-  
+  it 'cannot touch in if balance is below 1' do
+    card = OysterCard.new
+    expect { card.touch_in }.to raise_error "Balance is low, please top up"
+  end
+      
 end
 
