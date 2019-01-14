@@ -1,6 +1,8 @@
 require 'oystercard'
 
 describe OysterCard do
+  let(:station){ double :station }
+  
   it 'has initial balance of 0' do
     expect(OysterCard.new.balance).to eq 0
   end
@@ -30,14 +32,12 @@ describe OysterCard do
 
   it 'is in journey after touching in' do
     card = OysterCard.new(10)
-    station = double('station')
     card.touch_in(station)
     expect(card).to be_in_journey 
   end    
 
   it 'is no longer in journey after touching out' do
     card = OysterCard.new(10)
-    station = double('station')
     card.touch_in(station)
     card.touch_out
     expect(card).to_not be_in_journey
@@ -45,27 +45,23 @@ describe OysterCard do
 
   it 'cannot touch in if balance is below mimumum value' do
     card = OysterCard.new
-    station = double('station')
     expect { card.touch_in(station) }.to raise_error "Balance is low, please top up"
   end
 
   it 'fair is deducted when touching out' do
     card = OysterCard.new(10)
-    station = double('station')
     card.touch_in(station)
     expect { card.touch_out }.to change{card.balance}.by -2
   end
 
   it 'card knows its entry station' do
     card = OysterCard.new(10)
-    station = double('station')
     card.touch_in(station)
     expect(card.entry_station).to eq station
   end
 
   it 'card forgets entry station on touch out' do
     card = OysterCard.new(10)
-    station = double('station')
     card.touch_in(station)
     card.touch_out
     expect(card.entry_station).to eq nil
