@@ -23,4 +23,9 @@ describe OysterCard do
     card.deduct(2)
     expect(card.balance).to eq 8
   end
+
+  it 'in initially not in_journey' do
+    card = OysterCard.new
+    expect(card.in_journey?).to eq false
+  end
 end
